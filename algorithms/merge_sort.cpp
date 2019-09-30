@@ -4,7 +4,7 @@
 using namespace std;
 #define debug 0
 
-vector <int> insertion(vector <int> array){
+vector <int> merge_sort(vector <int> array){
     int left_size = array.size() / 2 + (array.size() % 2);
     int right_size = array.size() - left_size;
 
@@ -54,17 +54,19 @@ int main() {
         vector <int> array(n);
         for(int i = 0; i < n; i++)
             cin >> array[i];
-        array = insertion(array);
+        array = merge_sort(array);
         for(int i = 0; i < array.size(); i++)
             cout << array[i] << " ";
     }
     else{
         setlocale(LC_ALL, "");
         vector <int> array{338, 391, 12030, 101, 1999, 572, 1886, 1690, 189, 2619, 1281, 369};
-        array = insertion(array);
+        array = merge_sort(array);
         for(int i = 0; i < array.size(); i++)
             cout << array[i] << " ";
     }
+
+    // for(int i = 0; i < 30; i++) cout << i << " = > " << i / 2 - !(i % 2) << endl;
 
     return 0;
 }
