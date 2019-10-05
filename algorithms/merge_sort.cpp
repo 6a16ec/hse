@@ -5,7 +5,10 @@ using namespace std;
 #define debug 0
 
 vector <int> merge_sort(vector <int> array){
-    int left_size = array.size() / 2 + (array.size() % 2);
+    if (array.size() <= 1) return array;
+    
+    int left_size = array.size() / 2; // + (array.size() % 2)
+    // {7} = {3} + {4} :((((
     int right_size = array.size() - left_size;
 
     vector <int> left(left_size), right(right_size);
@@ -14,10 +17,8 @@ vector <int> merge_sort(vector <int> array){
     for(int i = left_size; i < left_size + right_size; i++) right[i - left_size] = array[i];
 
 
-    if (max(left_size, right_size) > 1){
-        left = insertion(left);
-        right = insertion(right);
-    }
+    left = insertion(left);
+    right = insertion(right);
 
     int ri = 0, li = 0;
     for(int i = 0; i < array.size(); i++){
@@ -59,8 +60,7 @@ int main() {
             cout << array[i] << " ";
     }
     else{
-        setlocale(LC_ALL, "");
-        vector <int> array{338, 391, 12030, 101, 1999, 572, 1886, 1690, 189, 2619, 1281, 369};
+        vector <int> array {338, 391, 12030, 101, 1999, 572, 1886, 1690, 189, 2619, 1281, 369};
         array = merge_sort(array);
         for(int i = 0; i < array.size(); i++)
             cout << array[i] << " ";
