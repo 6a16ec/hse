@@ -30,6 +30,7 @@ vector <double> insertion(vector <double> array){
 
 vector <double> bucket_sort(vector <double> array){
     int n = array.size();
+    int buckets_count = 2 * n;
 
     double min_value = array[0], max_value = array[0];
     for(int i = 0; i < n; i++){
@@ -42,7 +43,7 @@ vector <double> bucket_sort(vector <double> array){
 
     for(int i = 0; i < n; i++){
         int index = (int)((array[i] - min_value) / b_len + eps);
-        if (index >= n) index -= 1;
+        if (index >= buckets_count) index -= 1;
         buckets[index].push_back(array[i]);
     }
 
