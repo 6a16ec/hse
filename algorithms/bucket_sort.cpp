@@ -1,8 +1,17 @@
+#include <stdio.h>
 #include <iostream>
 #include <vector>
+#define debug 0
 
 using namespace std;
-#define debug 0
+const double eps = 1e-12;
+
+void print(vector <double> array){
+    for(int i = 0; i < array.size(); i++){
+        printf("%.2f ", array[i]);
+    }
+    printf("\n");
+}
 
 vector <double> insertion(vector <double> array){
     for(int i = 1; i < array.size(); i++){
@@ -21,18 +30,19 @@ vector <double> insertion(vector <double> array){
 
 vector <double> bucket_sort(vector <double> array){
     int n = array.size();
+
     double min_value = array[0], max_value = array[0];
     for(int i = 0; i < n; i++){
         if (array[i] > max_value) max_value = array[i];
         if (array[i] < min_value) min_value = array[i];
     }
 
-
-    double k = double(max_value - min_value) / (2 * n);
+    double b_len = double(max_value - min_value) / (2 * n);
     vector <vector <double> > buckets(2 * n);
 
     for(int i = 0; i < n; i++){
-        int index = (array[i] - min_value) / k;
+        int index = (int)((array[i] - min_value) / b_len + eps);
+        if (index >= n) index -= 1;
         buckets[index].push_back(array[i]);
     }
 
@@ -48,7 +58,6 @@ vector <double> bucket_sort(vector <double> array){
 
     return array;
 }
-// 33.8 39.1 1203.0 10.1 199.9
 
 int main() {
     if (debug == 0){
@@ -57,15 +66,13 @@ int main() {
         for(int i = 0; i < n; i++)
             cin >> array[i];
         array = bucket_sort(array);
-        for(int i = 0; i < n; i++)
-            cout << array[i] << " ";
+        print(array);
     }
-    else{
-        setlocale(LC_ALL, "");
-        vector <double> array{33.8, 39.1, 1203.0, 10.1, 199.9, 57.2, 188.6, 169.0, 18.9, 261.9, 128.1, 36.9};
+    else {
+        vector <double> array {33.8, 39.1, 1203.0, 10.1, 199.9, 57.2, 188.6, 169.0, 18.9, 261.9, 128.1, 36.9};
+        print(array);
         array = bucket_sort(array);
-        for(int i = 0; i < array.size(); i++)
-            cout << array[i] << " ";
+        print(array);
     }
 
     return 0;
