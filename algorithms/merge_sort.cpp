@@ -17,8 +17,8 @@ vector <int> merge_sort(vector <int> array){
     for(int i = left_size; i < left_size + right_size; i++) right[i - left_size] = array[i];
 
 
-    left = insertion(left);
-    right = insertion(right);
+    left = merge_sort(left);
+    right = merge_sort(right);
 
     int ri = 0, li = 0;
     for(int i = 0; i < array.size(); i++){
