@@ -39,7 +39,7 @@ vector <double> bucket_sort(vector <double> array){
     }
 
     double b_len = double(max_value - min_value) / (2 * n);
-    vector <vector <double> > buckets(2 * n);
+    vector <vector <double> > buckets(buckets_count);
 
     for(int i = 0; i < n; i++){
         int index = (int)((array[i] - min_value) / b_len + eps);
