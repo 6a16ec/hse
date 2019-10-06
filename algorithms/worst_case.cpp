@@ -24,14 +24,15 @@ int main() {
     }
 */
     int index = 0;
-    for(int m = n - 2; m >= (n % 2); m -= 2){
+    for(int m = 2; m <= n; m += 2){
         array[index] = m;
         index += 1;
     }
-    for(int m = !(n % 2); m <= n-1; m += 2){
+    for(int m = n - (n % 2 == 0); m >= 1; m -= 2){
         array[index] = m;
         index += 1;
     }
+
 
     print(array);
 
