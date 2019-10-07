@@ -29,6 +29,7 @@ vector <double> insertion(vector <double> array){
 }
 
 vector <double> bucket_sort(vector <double> array){
+    if (array.size() < 2) return array;
     int n = array.size();
     int buckets_count = 2 * n;
 
@@ -85,9 +86,13 @@ int main() {
         cout << endl;
 
         array = bucket_sort(array);
+        
+        if (array.size() >= 2) {
+            cout << "Final array:" << endl;
+            print(array);
+        }
 
-        cout << "Final array:" << endl;
-        print(array);
+        
     }
     else {
         vector <double> array {33.8, 39.1, 1203.0, 10.1, 199.9, 57.2, 188.6, 169.0, 18.9, 261.9, 128.1, 36.9};
